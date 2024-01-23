@@ -180,65 +180,62 @@ function startTimer(mode) {
     if (mode) {
       clearInterval(interval);
     }
-    // if (timeLimit === 0 || win || lose) {
-    //   lose = true;
-    //   overlay.style.display = "block";
-    //   clearInterval(interval);
+    if (timeLimit === 0 || win || lose) {
+      lose = true;
+      overlay.style.display = "block";
+      clearInterval(interval);
 
-    //   auth.onAuthStateChanged(async (user) => {
-    //     if (user) {
-    //       const gameRef = collection(db, "test");
-    //       const docRef = doc(gameRef, `${user.uid}`);
-    //       const docSnap = await getDoc(docRef);
+      auth.onAuthStateChanged(async (user) => {
+        if (user) {
+          const gameRef = collection(db, "test");
+          const docRef = doc(gameRef, `${user.uid}`);
+          const docSnap = await getDoc(docRef);
 
-    //       if (docSnap.exists()) {
-    //         await setDoc(doc(gameRef, `${user.uid}`), {
-    //           gamesPlayed: docSnap.data().gamesPlayed + 1,
-    //           email: user.email,
-    //           lastBreakTime:
-    //             docSnap.data().sessions.length % noOfAttemptsForBreak ==
-    //             noOfAttemptsForBreak - 1
-    //               ? moment().utc().format()
-    //               : docSnap.data().lastBreakTime,
-    //           sessions: [
-    //             ...docSnap.data().sessions,
-    //             {
-    //               win,
-    //               finalTime: time - timeLimit,
-    //               timeToFindWords,
-    //             },
-    //           ],
-    //           displayName: user.displayName,
-    //         });
-    //       } else {
-    //         setDoc(doc(gameRef, `${user.uid}`), {
-    //           gamesPlayed: 1,
-    //           email: user.email,
-    //           lastBreakTime: moment().subtract(1, "day").utc().format(),
-    //           sessions: [
-    //             {
-    //               win,
-    //               finalTime: time - timeLimit,
-    //               timeToFindWords,
-    //             },
-    //           ],
-    //           displayName: auth.currentUser.displayName,
-    //         });
-    //       }
-    //     }
-    //   });
+          if (docSnap.exists()) {
+            await setDoc(doc(gameRef, `${user.uid}`), {
+              gamesPlayed: docSnap.data().gamesPlayed + 1,
+              email: user.email,
+              lastBreakTime:
+                docSnap.data().sessions.length % noOfAttemptsForBreak ==
+                noOfAttemptsForBreak - 1
+                  ? moment().utc().format()
+                  : docSnap.data().lastBreakTime,
+              sessions: [
+                ...docSnap.data().sessions,
+                {
+                  win,
+                  finalTime: time - timeLimit,
+                  timeToFindWords,
+                },
+              ],
+              displayName: user.displayName,
+            });
+          } else {
+            setDoc(doc(gameRef, `${user.uid}`), {
+              gamesPlayed: 1,
+              email: user.email,
+              lastBreakTime: moment().subtract(1, "day").utc().format(),
+              sessions: [
+                {
+                  win,
+                  finalTime: time - timeLimit,
+                  timeToFindWords,
+                },
+              ],
+              displayName: auth.currentUser.displayName,
+            });
+          }
+        }
+      });
 
-     
-      
-     
-       
 
-    //   winLose.innerText = win ? "You Win!!! 🎉" : `You Lose 😢`;
-    //   currentPlay.innerText = `Current Time : ${120 - timeLimit}`;
-    //   worldRecord.innerText = `World Record 🥇: `;
+
+      winLose.innerText = win ? "You Win!!! 🎉" : `You Lose 😢`;
+      currentPlay.innerText = `Current Time : ${120 - timeLimit}`;
+      worldRecord.innerText = `World Record 🥇: `;
              
-    //   return;
-    // }
+      return;
+    }
 
     timer.innerText = `${Math.floor(timeLimit / 60)}:${
       timeLimit % 60 < 10 ? "0" + `${timeLimit % 60}` : `${timeLimit % 60}`

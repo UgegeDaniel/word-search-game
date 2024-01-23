@@ -93,7 +93,9 @@ function WordSearchController() {
     $(config.gameContainerId).empty();
     $(config.listOfWords.containerId).empty();
     $(config.themeId).empty();
-
+    if (typeof config.newGameCallback === "function") {
+      config.newGameCallback();
+    }
     //calls the set up to create a new word search game
     setUpWordSearch();
   });
