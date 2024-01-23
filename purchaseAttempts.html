@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Search Game</title>
+    <link rel="stylesheet" type="text/css" href="css/wordsearch.css" />
+    <style>
+      /* Add any additional styles here if needed */
+      .purchase-container {
+        margin: 20px;
+        text-align: center;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      select,
+      input {
+        margin-bottom: 15px;
+      }
+
+      button {
+        background-color: rgb(226, 213, 166);
+        border: 2px black solid;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+
+      /* Styles for the modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+
+      .modal-content {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+      }
+
+      .close {
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Word Search Game</h1>
+
+    <div class="purchase-container">
+      <div class="flex">
+        <div class="flexCol">
+          <label for="costPerAttempt">Cost per Attempt:</label>
+          <select id="costPerAttempt" onchange="calculateRewardAndAmount()">
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+            <option value="20">20</option>
+          </select>
+
+          <label for="reward">Reward:</label>
+          <input id="reward" type="text" readonly />
+
+          <label for="attempts">Number of Attempts:</label>
+          <input id="attempts" type="number" onchange="calculateAmount()" />
+
+          <label for="amountToPay">Amount to Pay:</label>
+          <input id="amountToPay" type="text" readonly />
+
+          <button id="payButton" onclick="confirmPayment()">Pay</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <p>Are you sure you want to proceed with the payment?</p>
+        <button onclick="proceedToInstructions()">Yes, Proceed</button>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="js/wordpaths.js"></script>
+    <script src="js/wordsToSearch.js"></script>
+    <script src="js/wordsearchcontroller.js"></script>
+    <script src="js/wordsearchlogic.js"></script>
+    <script src="js/wordsearchview.js"></script>
+
+    <script>
+      function calculateRewardAndAmount() {
+        var costPerAttempt = parseInt(
+          document.getElementById("costPerAttempt").value
+        );
+        var reward = (costPerAttempt / 5) * 1000;
+        document.getElementById("reward").value = reward;
+        calculateAmount();
+      }
+
+      function calculateAmount() {
+        var costPerAttempt = parseInt(
+          document.getElementById("costPerAttempt").value
+        );
+        var attempts = parseInt(document.getElementById("attempts").value);
+        var amountToPay = costPerAttempt * attempts;
+        document.getElementById("amountToPay").value = amountToPay;
+      }
+
+      function confirmPayment() {
+        // Verify all fields are not empty
+        var costPerAttempt = document.getElementById("costPerAttempt").value;
+        var reward = document.getElementById("reward").value;
+        var attempts = document.getElementById("attempts").value;
+        var amountToPay = document.getElementById("amountToPay").value;
+
+        if (
+          costPerAttempt === "" ||
+          reward === "" ||
+          attempts === "" ||
+          amountToPay === ""
+        ) {
+          alert(
+            "Please fill in all fields before proceeding with the payment."
+          );
+          return;
+        }
+
+        // Show modal to confirm payment
+        var modal = document.getElementById("myModal");
+        modal.style.display = "block";
+      }
+
+      function closeModal() {
+        var modal = document.getElementById("myModal");
+        modal.style.display = "none";
+      }
+
+      function proceedToInstructions() {
+        var paymentData = {
+          costPerAttempt: document.getElementById("costPerAttempt").value,
+          reward: document.getElementById("reward").value,
+          attempts: document.getElementById("attempts").value,
+          amountToPay: document.getElementById("amountToPay").value,
+        };
+
+        // Store data object in localStorage
+        localStorage.setItem("paymentData", JSON.stringify(paymentData));
+
+        // Proceed to instructions page
+        // Replace the next line with the appropriate logic for navigating to the instructions page
+        window.location.href = "instructions.html";
+        alert("Payment successful! Proceeding to instructions page...");
+
+        closeModal(); // Close the modal after confirmation
+      }
+
+      $(document).ready(function () {
+        new WordSearchController(
+          "#wordboard",
+          "#wordlist",
+          "#solveButton",
+          "#newGameButton",
+          "#instructions",
+          "#wordTheme"
+        );
+        calculateRewardAndAmount();
+      });
+    </script>
+  </body>
+</html>

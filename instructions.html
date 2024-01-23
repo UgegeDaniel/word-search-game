@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Word Search Game</title>
+    <link rel="stylesheet" type="text/css" href="css/wordsearch.css" />
+    <style>
+      /* Add any additional styles here if needed */
+      .play-container {
+        margin: 20px;
+        text-align: center;
+      }
+
+      button {
+        background-color: rgb(226, 213, 166);
+        border: 2px black solid;
+        border-radius: 8px;
+        font-size: 18px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Word Search Game</h1>
+
+    <div class="play-container">
+      <h2>How to Play</h2>
+      <p>
+        Welcome to the Word Search Game: <br />
+
+        To search for the list of words inside the box, engage in a delightful
+        interactive experience by employing the simple yet engaging
+        click-and-drag method. Take control as you click on a starting letter,
+        hold down the mouse button, and smoothly drag your cursor across the
+        grid, forming a seamless path of connected letters. Feel the
+        satisfaction as the selected letters light up, unveiling the hidden
+        words you seek. This intuitive click-and-drag action brings an element
+        of tactile joy to the process, transforming the search into a dynamic
+        and enjoyable challenge. Explore the grid with precision, connecting
+        letters in your quest to uncover the words that await discovery!
+      </p>
+      <button id="startPlayingButton" onclick="startPlaying()">
+        Start Playing
+      </button>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script>
+      function startPlaying() {
+        // Implement start playing logic here
+        window.location.href = "index.html";
+        alert("Let the game begin!");
+      }
+    </script>
+  </body>
+</html>
