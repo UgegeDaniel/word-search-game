@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/@blex41/word-search@latest/dist/wordsearch.min.js"></script>
+
+    <title>Word Search</title>
+  </head>
+  <body>
+    <div id="overlay">
+      <div id="card">
+        <div id="wrapper">
+          <h1 id="win-lose"></h1>
+
+          <p>Here's how you did</p>
+        </div>
+
+        <div id="player-info-container">
+          <div id="current-play" className="play-info">
+            <span className="header">Current Time:</span>
+          </div>
+          <div id="world-record" className="play-info">
+            <span className="header">World Record✨:</span>
+          </div>
+        </div>
+
+        <button id="new">New Game</button>
+      </div>
+    </div>
+
+    <div id="game">
+      <div id="restart">Restart</div>
+      <div id="selection-wrapper">
+        <div class="" id="selected-letters">Word Search</div>
+
+        <div id="found-words"></div>
+        <div id="not-signed-in">
+          <button id="signInBtn" style="font-size: large" hidden="false">
+            Sign in with Google
+          </button>
+          <!-- <button id="signOutBtn" style="font-size: large">Sign out</button> -->
+        </div>
+      </div>
+      <div id="grid-wrapper"><div id="grid-container"></div></div>
+      <div id="timer"></div>
+    </div>
+
+    <script src="bundle.js"></script>
+  </body>
+</html>
