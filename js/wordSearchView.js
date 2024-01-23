@@ -105,19 +105,16 @@ function WordSearchView(matrix, list) {
   function createListOfWords(wordList, wordListId) {
     // Clear existing content of the container
     $(wordListId).empty();
-  
+
     // Loop through rows
+    // Create a div for the row
+    var row = $("<div/>");
+    row.attr({ class: "listRow" }); // Give the rows a list row class
     for (var i = 0; i < wordList.length; i++) {
-      // Create a div for the row
-      var row = $("<div/>");
-      row.attr({ class: "listRow" }); // Give the rows a list row class
-  
       // Loop through columns (words in the row)
       for (var j = 0; j < wordList[i].length; j++) {
-        // Each individual word is a list item element!
-        console.log({ word: wordList[i][j], i, j });
-        var word = $("<li/>");
-  
+        var word = $("<span/>");
+
         // Check if the word is not empty
         if (wordList[i][j]) {
           // Give the word a class and set its text
@@ -125,20 +122,19 @@ function WordSearchView(matrix, list) {
             class: "listWord",
             text: wordList[i][j].replace(/\W/g, ""),
           });
-  
+
           // Set the text of the word
           word.text(wordList[i][j]);
-  
+
           // Add the word to the row
           word.appendTo(row);
         }
       }
-  
+
       // Add the row of words to the larger word list div
       row.appendTo($(wordListId));
     }
   }
-
 
   /** this function solves the puzzle for the player!
    *
@@ -284,6 +280,20 @@ function WordSearchView(matrix, list) {
       //checks if a word on the list was selected
       if (validWordMade(list, wordMade, config.instructionsId)) {
         $(select.selected).addClass("found");
+        const letters = "0123456789ABCDEF";
+        let seed = "#";
+        for (let i = 0; i < 6; i++) {
+          seed += letters[Math.floor(Math.random() * 16)];
+        }
+        const randomColor = getComputedStyle(
+          document.documentElement
+        ).getPropertyValue("--random-seed");
+        document.querySelectorAll(".found").forEach((foundCell) => {
+          console.log(randomColor);
+          foundCell.style.backgroundColor = randomColor;
+          // foundCell.style.colo = randomColor;
+        });
+        document.documentElement.style.setProperty("--random-seed", seed);
       }
 
       //unselects any selected letters

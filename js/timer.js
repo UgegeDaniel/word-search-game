@@ -3,7 +3,7 @@ function countdownTimer(seconds, callback) {
   const countdownInterval = setInterval(function () {
     document.querySelector(
       "#timer"
-    ).innerText = `Game ends in: ${currentSeconds} seconds`;
+    ).innerText = `0:${currentSeconds}`;
     if (currentSeconds === 0) {
       clearInterval(countdownInterval);
       if (typeof callback === "function") {

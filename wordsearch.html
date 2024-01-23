@@ -1,38 +1,73 @@
 <!DOCTYPE html>
 
 <html>
-	<head>	
-		<meta charset="utf-8">
-		<title>Noor's Word Search Game!</title>
-	</head>
-	<body>
-		<h1>Noor's Word Search Game!</h1>
-		<h2 id = "instructions"></h2>
-		<h3 id = "themeIntro">The theme is: <span id = "wordTheme"></span></h3>
-		
-		<button id = "newGameButton" type = "button">New Game</button>
-		<div id = "timer" type = "button"></div>
-		<div id = "wordboard"></div>
-		<div id = "wordlist"></div>
-		<button id = "solveButton" type = "button">Release the sacred answers!</button>
 
-		<link rel = "stylesheet" type="text/css" href = "css/wordsearch.css">
+<head>
+	<meta charset="utf-8">
+	<title>Noor's Word Search Game!</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/additional-css.css">
+</head>
 
-		<script src = https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+<body>
+	<div id="overlay">
+		<div id="card">
+			<div id="wrapper">
+				<h1 id="win-lose"></h1>
 
-		<script src = "js/config.js"></script>
-		<script src = "js/timer.js"></script>
-		<script src = "js/wordsToSearch.js"></script>
-		<script src = "js/utils.js"></script>
-		<script src = "js/wordPaths.js"></script>
-		<script src = "js/wordSearchController.js"></script>
-		<script src = "js/wordSearchlogic.js"></script>
-		<script src = "js/wordSearchview.js"></script>
+				<p>Here's how you did</p>
+			</div>
 
-		<script>	
-			$(document).ready( function() {
-				new WordSearchController();
-			})
-		</script>
-	</body>
+			<div id="player-info-container">
+				<div id="current-play" className="play-info">
+					<span className="header">Current Time:</span>
+				</div>
+				<div id="world-record" className="play-info">
+					<span className="header">World Record✨:</span>
+				</div>
+			</div>
+
+			<button id="new">New Game</button>
+		</div>
+	</div>
+
+	<div id="game">
+		<div id="restart">Restart</div>
+		<div id="selection-wrapper">
+			<div class="" id="selected-letters">Word Search</div>
+
+			<div id="found-words"></div>
+			<div id="not-signed-in">
+				<button id="signInBtn" style="font-size: large" hidden="false">
+					Sign in with Google
+				</button>
+				<!-- <button id="signOutBtn" style="font-size: large">Sign out</button> -->
+			</div>
+		</div>
+		<div id="grid-wrapper">
+			<div id="grid-container"></div>
+		</div>
+		<div id="timer"></div>
+	</div>
+
+
+	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+
+	<script src="js/config.js"></script>
+	<script src="js/timer.js"></script>
+	<script src="js/wordsToSearch.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/wordPaths.js"></script>
+	<script src="js/wordSearchController.js"></script>
+	<script src="js/wordSearchlogic.js"></script>
+	<script src="js/wordSearchview.js"></script>
+
+	<script>
+		$(document).ready(function () {
+			new WordSearchController();
+		})
+	</script>
+</body>
+
 </html>

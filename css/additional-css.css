@@ -1,0 +1,69 @@
+:root {
+    --random-hue: calc(var(--random-seed) * 360);
+    --random-color: hsl(var(--random-hue), 70%, 50%);
+  }
+  
+
+.cell {
+    margin: 3px 7px;
+    border: none;
+    display: table-cell;
+    height: 30px;
+    width: 30px;
+    font-size: 17px;
+    padding: 0;
+    outline: 0;
+    font-weight: 600;
+    background-color: transparent;
+    border-radius: 50%;
+    /*ensures text can't be accidentally selected*/
+    cursor: default;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+
+}
+
+.cell:hover {
+
+    background-color: rgb(242, 229, 141);
+
+}
+
+.cell.selectable {
+
+    background-color: rgb(234, 228, 206);
+
+}
+
+.cell.selected {
+
+    background-color: rgb(205, 188, 90);
+
+}
+
+.cell.found {
+    background-color: var(--random-seed);
+    /* background-color: rgb(158, 149, 123); */
+    border: 1px black solid;
+    font-weight: bold;
+
+}
+
+#found-words span::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: var(--lineWidth);
+    height: 0.3vmin;
+    background: var(--lineColor);
+    transition: all 0.5s ease-in-out;
+}
+
+.listRow {
+    display: flex;
+    gap: 100px;
+    justify-content: space-between;
+}
