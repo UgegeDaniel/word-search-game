@@ -1,78 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Word Search Game</title>
-  <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <link rel="stylesheet" type="text/css" href="css/additional-css.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="css/custom-styles.css" /> -->
+	<meta charset="utf-8">
+	<title>Word Search Game!</title>
+	<!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/additional-css.css">
 </head>
 
 <body>
-  <header>
-  </header>
-  <div class="" id="selected-letters">Word Search</div>
+	<div id="overlay">
+		<div id="card">
+			<!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
+			<button class="button" onclick="closeModal()">Quit</button>
+			<button class="button" onclick="confirmPayment()" >Proceed To Payment</button>
+		</div>
+	</div>
 
-  <div id="card">
+  <div clas="payment-details">
+    <div class="" id="selected-letters">Word Search</div>
     <div class="flexCol">
       <div class="input-field">
         <div class="input-field flexCol">
           <label for="reward">Your Attempts Balance:</label>
-          <input id="reward" type="text" readonly />
+          <input id="attemptBalance" type="text" readonly />
         </div>
         <label for="costPerAttempt">Cost per Attempt:</label>
-        <select id="costPerAttempt" onchange="calculateRewardAndAmount()">
+        <select id="costPerAttempt" onchange="calculateRewardAmount()">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="15">15</option>
           <option value="20">20</option>
         </select>
       </div>
-
+  
       <div class="input-field flexCol">
         <label for="reward">Reward:</label>
         <input id="reward" type="text" readonly />
       </div>
       <div class="input-field flexCol">
         <label for="attempts">Number of Attempts:</label>
-        <input id="attempts" type="number" onchange="calculateAmount()" />
+        <input id="attempts" type="number" oninput="calculateAmountToPay()" />
       </div>
       <div class="input-field flexCol">
         <label for="amountToPay">Amount to Pay:</label>
         <input id="amountToPay" type="text" readonly />
       </div>
-      <button class="button" id="payButton" onclick="confirmPayment()">Pay</button>
+      <button class="button" id="payButton" onclick="proceedToPayement()">
+        Pay
+      </button>
     </div>
   </div>
 
-  <!-- Modal -->
-  <!-- <div id="myModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <p>Are you sure you want to proceed with the payment?</p>
-      <button onclick="proceedToInstructions()">Yes, Proceed</button>
-    </div>
-  </div> -->
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
 
-  <script src="js/wordpaths.js"></script>
-  <script src="js/wordsToSearch.js"></script>
-  <script src="js/wordsearchcontroller.js"></script>
-  <script src="js/wordsearchlogic.js"></script>
-  <script src="js/wordsearchview.js"></script>
+	<script src="js/config.js"></script>
+	<script src="js/timer.js"></script>
+	<script src="js/wordsToSearch.js"></script>
+	<script src="js/utils.js"></script>
+	<script src="js/wordPaths.js"></script>
+	<script src="js/wordSearchController.js"></script>
+	<script src="js/wordSearchlogic.js"></script>
+	<script src="js/wordSearchview.js"></script>
 
   <script>
-        //get elements 
-        //cost per attempts * 200 = reward
-        //number of attempts * cos per attempts = amount to pay
-
-        //check if wallet balnce is enough to purchase attempts
-        //if it is enough update new wallet balance and attempts balance
-        //if it is not redirect to wallet page to fund wallet 
-
+    const attemptBalanceElement = document.querySelector("#attemptBalance");
+    const costPerAttemptElement = document.querySelector("#costPerAttempt");
+    const rewardElement = document.querySelector("#reward");
+    const attemptsElements = document.querySelector("#attempts");
+    const amountToPayElement = document.querySelector("#amountToPay");
+    const overlayElement = document.querySelector("#overlay");
+    attemptBalanceElement.value = 10;
+    rewardElement.value = Number(costPerAttemptElement.value) * 200;
+  
+    function calculateRewardAmount() {
+      rewardElement.value = Number(costPerAttemptElement.value) * 200;
+    }
+    function calculateAmountToPay() {
+      amountToPayElement.value =
+        Number(costPerAttemptElement.value) * Number(attemptsElements.value);
+    }
+  
+    function proceedToPayement() {
+      overlayElement.style.display = "block";
+    }
+    function closeModal(){
+      overlayElement.style.display = "none";
+    }
+    function  confirmPayment(){
+      window.location.href = "instructions.html";
+    }
+    //check if wallet balnce is enough to purchase attempts
+    //if it is enough update new wallet balance and attempts balance
+    //if it is not redirect to wallet page to fund wallet
   </script>
 </body>
 

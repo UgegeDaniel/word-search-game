@@ -25,8 +25,8 @@
 				</div> -->
 			</div>
 
-			<button id="new">Go Back To Homepage</button>
-			<button id="new">Play Again</button>
+			<button class="button" id="home">Go Back To Homepage</button>
+			<button class="button" id="newGame">Play Again</button>
 		</div>
 	</div>
 
@@ -58,6 +58,10 @@
 			if(config.validateGamePlay()){
 				new WordSearchController();
 			}
+		})
+		const homeBtn = document.querySelector("#home");
+		homeBtn.addEventListener("click", ()=>{
+			window.location.href = "index.html";
 		})
 	</script>
 </body>

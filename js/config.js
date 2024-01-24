@@ -1,6 +1,16 @@
 const config = {
   //function to run before game runs return boolean
   validateGamePlay: () => {
+    const userDetails = {
+      userId: "",
+      email: "",
+      userName: "",
+      walletBalnce: "",
+      attemptsBalance: "",
+    };
+    // const { attemptsRemaining } = JSON.parse(
+    //   localStorage.getItem("word-search-game-details")
+    // );
     //check if user attempts greater than 0
     //if user attempts is 0 show modal to buy more attempts
     //return false
@@ -26,7 +36,7 @@ const config = {
     show: false,
     solveButtonId: "#solveButton",
   },
-  newGameButtonId: "#new",
+  newGameButtonId: "#newGame",
   newGameCallback: function () {
     const overlay = document.querySelector("#overlay");
     overlay.style.display = "none";
@@ -58,7 +68,7 @@ const config = {
     const currentPlay = document.querySelector("#current-play");
     // const worldRecord = document.querySelector("#world-record");
 
-      //reduce number of attempts and update display
+    //reduce number of attempts and update display
     //reward User functionality
     overlay.style.display = "block";
     winLose.innerText = `You Win 🎉`;
