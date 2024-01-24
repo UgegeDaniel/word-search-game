@@ -1,36 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Word Search Game</title>
-    <link rel="stylesheet" type="text/css" href="css/wordsearch.css" />
-  </head>
-  <body>
-    <h1>Word Search Game</h1>
-    <div id="timerDisplay">
-      Time Remaining: <span id="timer">00:00:00</span>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Search Game</title>
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="stylesheet" type="text/css" href="css/additional-css.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/custom-styles.css" /> -->
+</head>
+
+<body>
+  <header>
+  </header>
+  <div class="" id="selected-letters">Word Search</div>
+
+  <div id="card">
+    <div class="flexCol">
+      <div class="input-field">
+        <div class="input-field flexCol">
+          <label for="reward">Your Attempts Balance:</label>
+          <input id="reward" type="text" readonly />
+        </div>
+        <label for="costPerAttempt">Cost per Attempt:</label>
+        <select id="costPerAttempt" onchange="calculateRewardAndAmount()">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+          <option value="20">20</option>
+        </select>
+      </div>
+
+      <div class="input-field flexCol">
+        <label for="reward">Reward:</label>
+        <input id="reward" type="text" readonly />
+      </div>
+      <div class="input-field flexCol">
+        <label for="attempts">Number of Attempts:</label>
+        <input id="attempts" type="number" onchange="calculateAmount()" />
+      </div>
+      <div class="input-field flexCol">
+        <label for="amountToPay">Amount to Pay:</label>
+        <input id="amountToPay" type="text" readonly />
+      </div>
+      <button id="payButton" onclick="confirmPayment()">Pay</button>
     </div>
-    <div id="attemptsDisplay">
-      Attempts Remaining: <span id="attempts">0</span>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div id="myModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <p>Are you sure you want to proceed with the payment?</p>
+      <button onclick="proceedToInstructions()">Yes, Proceed</button>
     </div>
-    <h3 id="themeIntro">The theme is: <span id="wordTheme"></span></h3>
-    <div id="wordlist"></div>
-    <div id="wordboard"></div>
-    <button id="solveButton" type="button">Release the sacred answers!</button>
-    <script src = https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
-    <script src = "js/config.js"></script>
-    <script src = "js/timer.js"></script>
-    <script src = "js/wordsToSearch.js"></script>
-    <script src = "js/utils.js"></script>
-    <script src = "js/wordPaths.js"></script>
-    <script src = "js/wordSearchController.js"></script>
-    <script src = "js/wordSearchlogic.js"></script>
-    <script src = "js/wordSearchview.js"></script>
-    <script>	
-        $(document).ready( function() {
-            new WordSearchController();
-        })
-    </script>
-  </body>
+  </div> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script src="js/wordpaths.js"></script>
+  <script src="js/wordsToSearch.js"></script>
+  <script src="js/wordsearchcontroller.js"></script>
+  <script src="js/wordsearchlogic.js"></script>
+  <script src="js/wordsearchview.js"></script>
+
+  <script>
+        //get elements 
+        //cost per attempts * 200 = reward
+        //number of attempts * cos per attempts = amount to pay
+
+        //check if wallet balnce is enough to purchase attempts
+        //if it is enough update new wallet balance and attempts balance
+        //if it is not redirect to wallet page to fund wallet 
+
+  </script>
+</body>
+
 </html>

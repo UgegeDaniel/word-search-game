@@ -4,7 +4,7 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Noor's Word Search Game!</title>
+	<title>Word Search Game!</title>
 	<!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/additional-css.css">
@@ -55,7 +55,9 @@
 
 	<script>
 		$(document).ready(function () {
-			new WordSearchController();
+			if(config.validateGamePlay()){
+				new WordSearchController();
+			}
 		})
 	</script>
 </body>

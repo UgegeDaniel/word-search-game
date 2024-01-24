@@ -1,4 +1,11 @@
 const config = {
+  //function to run before game runs return boolean
+  validateGamePlay: () => {
+    //check if user attempts greater than 0
+    //if user attempts is 0 show modal to buy more attempts
+    //return false
+    return true;
+  },
   board: {
     rows: 12,
     columns: 10,
@@ -16,7 +23,7 @@ const config = {
   },
   numberOfWordsToFind: 3,
   showSolution: {
-    show: true,
+    show: false,
     solveButtonId: "#solveButton",
   },
   newGameButtonId: "#new",
@@ -33,15 +40,32 @@ const config = {
       const winLose = document.querySelector("#win-lose");
       const overlay = document.querySelector("#overlay");
       const currentPlay = document.querySelector("#current-play");
-      const worldRecord = document.querySelector("#world-record");
+      // const worldRecord = document.querySelector("#world-record");
 
+      //reduce number of attempts
       overlay.style.display = "block";
       winLose.innerText = `You Lose 😢`;
       currentPlay.innerText = `Current Time : ${100}`;
-      worldRecord.innerText = `World Record 🥇: `;
+      // worldRecord.innerText = `World Record 🥇: `;
+
+      //Return to homepage button
+      //Try again button
     },
   },
   onSuccess: function () {
-    console.log("You Won !!!");
+    const winLose = document.querySelector("#win-lose");
+    const overlay = document.querySelector("#overlay");
+    const currentPlay = document.querySelector("#current-play");
+    // const worldRecord = document.querySelector("#world-record");
+
+    //reduce number of attempts
+    //reward User functionality
+    overlay.style.display = "block";
+    winLose.innerText = `You Win 🎉`;
+    currentPlay.innerText = `Current Time : ${100}`;
+    // worldRecord.innerText = `World Record 🥇: `;
+
+    //Return to homepage button
+    //Keep playing button
   },
 };
