@@ -4,31 +4,16 @@
   <head>
     <meta charset="utf-8" />
     <title>Word Search Game</title>
-    <link rel="stylesheet" type="text/css" href="css/wordsearch.css" />
-    <style>
-      /* Add any additional styles here if needed */
-      .play-container {
-        margin: 20px;
-        text-align: center;
-      }
-
-      button {
-        background-color: rgb(226, 213, 166);
-        border: 2px black solid;
-        border-radius: 8px;
-        font-size: 18px;
-        font-weight: bold;
-        cursor: pointer;
-      }
-    </style>
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <link rel="stylesheet" type="text/css" href="css/additional-css.css" />
   </head>
 
   <body>
-    <h1>Word Search Game</h1>
+    <div class="" id="selected-letters">Word Search</div>
 
-    <div class="play-container">
-      <h2>How to Play</h2>
-      <p>
+    <div class="how-to-play-container">
+      <h2 class="sub-title">How to Play</h2>
+      <p class="how-to-play-text">
         Welcome to the Word Search Game: <br />
 
         To search for the list of words inside the box, engage in a delightful
@@ -42,7 +27,7 @@
         and enjoyable challenge. Explore the grid with precision, connecting
         letters in your quest to uncover the words that await discovery!
       </p>
-      <button id="startPlayingButton" onclick="startPlaying()">
+      <button class="button" id="startPlayingButton" onclick="startPlaying()">
         Start Playing
       </button>
     </div>

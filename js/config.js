@@ -42,7 +42,7 @@ const config = {
       const currentPlay = document.querySelector("#current-play");
       // const worldRecord = document.querySelector("#world-record");
 
-      //reduce number of attempts
+      //reduce number of attempts and update display
       overlay.style.display = "block";
       winLose.innerText = `You Lose 😢`;
       currentPlay.innerText = `Current Time : ${100}`;
@@ -58,7 +58,7 @@ const config = {
     const currentPlay = document.querySelector("#current-play");
     // const worldRecord = document.querySelector("#world-record");
 
-    //reduce number of attempts
+      //reduce number of attempts and update display
     //reward User functionality
     overlay.style.display = "block";
     winLose.innerText = `You Win 🎉`;
