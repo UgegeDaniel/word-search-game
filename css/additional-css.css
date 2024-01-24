@@ -130,3 +130,15 @@
   max-width: 500px;
   text-align: center;
 }
+
+@media screen and (max-width: 800px) {
+  #grid-wrapper {
+    margin-top: -500px;
+  }
+}
+
+/* @media screen and (max-width: 600px) {
+  #grid-wrapper {
+    margin-top: -2600px;
+  }
+} */
