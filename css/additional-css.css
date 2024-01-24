@@ -1,8 +1,53 @@
 :root {
     --random-hue: calc(var(--random-seed) * 360);
     --random-color: hsl(var(--random-hue), 70%, 50%);
-  }
-  
+}
+
+.flexCol {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+
+.flexCol label {
+    font-size: 24px;
+    text-align: left;
+    margin-left: 0px;
+}
+
+.flexCol select,
+.flexCol input {
+    font-size: 16px;
+    font-weight: 600;
+    min-width: 100%;
+    border: 2px solid black;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.input-field {
+    margin: 16px 0;
+}
+
+#payButton {
+    min-width: 100%;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--orange);
+    color: white;
+    outline: none;
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#payButton:hover {
+    background-color: var(--light-orange);
+    color: black;
+    border: 2px solid black;
+}
 
 .cell {
     margin: 3px 7px;
