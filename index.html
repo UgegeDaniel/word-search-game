@@ -3,21 +3,23 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<title>Word Search Game!</title>
-	<!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/additional-css.css">
+  <meta charset="utf-8">
+  <title>Word Search Game!</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/additional-css.css">
 </head>
 
 <body>
-	<div id="overlay">
-		<div id="card">
-			<!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
-			<button class="button" onclick="closeModal()">Quit</button>
-			<button class="button" onclick="confirmPayment()" >Proceed To Payment</button>
-		</div>
-	</div>
+  <div id="overlay">
+    <div id="card" class="flex">
+      <!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
+      <div class="flex vertical-centre">
+        <button class="button inline-button" onclick="closeModal()">Quit</button>
+        <button class="button inline-button" onclick="confirmPayment()">Proceed To Payment</button>
+      </div>
+    </div>
+  </div>
 
   <div clas="payment-details">
     <div class="" id="selected-letters">Word Search</div>
@@ -35,7 +37,7 @@
           <option value="20">20</option>
         </select>
       </div>
-  
+
       <div class="input-field flexCol">
         <label for="reward">Reward:</label>
         <input id="reward" type="text" readonly />
@@ -48,23 +50,28 @@
         <label for="amountToPay">Amount to Pay:</label>
         <input id="amountToPay" type="text" readonly />
       </div>
-      <button class="button" id="payButton" onclick="proceedToPayement()">
-        Pay
-      </button>
+      <div class="flex">
+        <button class="button inline-button" id="payButton" onclick="proceedToPayement()">
+          Pay
+        </button>
+        <button class="button inline-button sec-button" id="payButton" onclick="gotInstaructionsPage()">
+          Skip
+        </button>
+      </div>
     </div>
   </div>
 
 
-	<script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
+  <script src=https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js></script>
 
-	<script src="js/config.js"></script>
-	<script src="js/timer.js"></script>
-	<script src="js/wordsToSearch.js"></script>
-	<script src="js/utils.js"></script>
-	<script src="js/wordPaths.js"></script>
-	<script src="js/wordSearchController.js"></script>
-	<script src="js/wordSearchlogic.js"></script>
-	<script src="js/wordSearchview.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/wordsToSearch.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/wordPaths.js"></script>
+  <script src="js/wordSearchController.js"></script>
+  <script src="js/wordSearchlogic.js"></script>
+  <script src="js/wordSearchview.js"></script>
 
   <script>
     const attemptBalanceElement = document.querySelector("#attemptBalance");
@@ -75,7 +82,7 @@
     const overlayElement = document.querySelector("#overlay");
     attemptBalanceElement.value = 10;
     rewardElement.value = Number(costPerAttemptElement.value) * 200;
-  
+
     function calculateRewardAmount() {
       rewardElement.value = Number(costPerAttemptElement.value) * 200;
     }
@@ -83,19 +90,19 @@
       amountToPayElement.value =
         Number(costPerAttemptElement.value) * Number(attemptsElements.value);
     }
-  
+
     function proceedToPayement() {
       overlayElement.style.display = "block";
     }
-    function closeModal(){
+    function closeModal() {
       overlayElement.style.display = "none";
     }
-    function  confirmPayment(){
+    function gotInstaructionsPage() {
       window.location.href = "instructions.html";
     }
     //check if wallet balnce is enough to purchase attempts
-    //if it is enough update new wallet balance and attempts balance
-    //if it is not redirect to wallet page to fund wallet
+    //if it is enough update new wallet balance and attempts balance (success message)
+    //if it is not redirect to wallet page to fund wallet (with message)
   </script>
 </body>
 
