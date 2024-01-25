@@ -6,7 +6,6 @@
   --lineWidth: 0%;
   --lineColor: none;
   touch-action: none;
-  
 }
 
 body {
@@ -20,13 +19,11 @@ body {
 }
 
 #grid-container {
-    
   display: grid;
   gap: 1vmin 3vmin;
-  grid-template-columns: repeat(var(--gridColumnSize),7vmin);
-  grid-template-rows: repeat(var(--gridRowSize),7vmin);
+  grid-template-columns: repeat(var(--gridColumnSize), 7vmin);
+  grid-template-rows: repeat(var(--gridRowSize), 7vmin);
 
-  
   /*grid template columns and rows are controlled by js see line 55 and 56 in script.js*/
 }
 
@@ -47,10 +44,7 @@ body {
 
   #selection-wrapper {
     width: 60vw !important;
-
   }
-  
- 
 }
 .grid-items {
   display: flex;
@@ -75,25 +69,21 @@ body {
 }
 
 #found-words span {
-
   font-size: 3vmin;
 }
 
-
 @media screen and (max-width: 400px) {
-
   #found-words span {
     font-size: 4.5vmin;
   }
 
-  #found-words span::before{
+  #found-words span::before {
     height: 0.7vmin !important;
   }
 
-  .grid-items{
+  .grid-items {
     font-size: 3.8vmin !important;
   }
-  
 }
 
 #selected-letters {
@@ -116,13 +106,13 @@ body {
   width: 26vw;
 }
 
-#found-words span{
+#found-words span {
   transition: all 0.5s ease-in-out;
   position: relative;
 }
 
 #found-words span::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   width: var(--lineWidth);
@@ -131,7 +121,7 @@ body {
   transition: all 0.5s ease-in-out;
 }
 
-#overlay{
+#overlay {
   background-color: rgba(0, 0, 0, 0.4);
   width: 100vw;
   height: 100vh;
@@ -139,10 +129,10 @@ body {
   position: fixed;
   opacity: 0;
   animation: fade-in 1s forwards;
-  display: none;  
+  display: none;
 }
 
-#card{
+#card {
   height: 80vmin;
   padding: 2vmin 5vmin;
   width: 53vmin;
@@ -153,7 +143,7 @@ body {
   transform: translate(-50%, -50%);
   border-radius: 2vmin;
   text-align: center;
-  overflow-y:scroll;
+  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -164,40 +154,34 @@ body {
   display: none;
 }
 
-
-  @media screen and (max-width: 550px){
-   #card{
-
+@media screen and (max-width: 550px) {
+  #card {
     height: 114vmin;
     width: 80vmin;
     padding: 5vmin;
-   } 
-
   }
-
+}
 
 @keyframes fade-in {
   from {
-      opacity: 0;
-      backdrop-filter: blur(0px);
-   }
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
   to {
-      opacity: 1;
-      backdrop-filter: blur(8px);
-    }
+    opacity: 1;
+    backdrop-filter: blur(8px);
   }
+}
 
+#timer {
+  border-radius: 2px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 1.9rem;
+}
 
-  #timer{
-    border-radius: 2px;
-    position: fixed;
-    top: 0;
-    right: 0;
-    font-size: 1.9rem;
-  }
-
-
-#player-info-container{
+#player-info-container {
   height: 27vmin;
   width: 49vmin;
   display: flex;
@@ -205,32 +189,32 @@ body {
   justify-content: space-between;
   align-items: center;
   font-size: 2vmin;
-
-  
 }
 
-#current-play,#personal-best,#world-record{
-  padding: 4vmin;
+#wallet-balance,
+#attempts-balance,
+#personal-best,
+#world-record {
+  padding: 3vmin;
   width: inherit;
   border-radius: 1vmin;
   color: white;
+  margin-bottom: 10px;
+  min-width: 200px;
 }
-#current-play{
+#wallet-balance,
+#attempts-balance {
   background: #152938;
-  
 }
-#personal-best{
+#personal-best {
   background: #152938;
-  
-  
 }
-#world-record{
-  background: #DFE7EC;
-  color: #304859
-  
+#world-record {
+  background: #dfe7ec;
+  color: #304859;
 }
 
-#new{
+#new {
   background: orange;
   color: white;
   font-size: 2vmin;
@@ -241,30 +225,25 @@ body {
   padding: 2vmin 3vmin;
 }
 
-@media screen and (max-width: 550px){
-  #player-info-container{
-height: 44vmin;
-width: 60vmin;
-font-size: 3.5vmin;
-
-
+@media screen and (max-width: 550px) {
+  #player-info-container {
+    height: 44vmin;
+    width: 60vmin;
+    font-size: 3.5vmin;
   }
 
-  #new{
-      font-size: 3.5vmin;
-      width: 25vmin;
+  #new {
+    font-size: 3.5vmin;
+    width: 25vmin;
   }
-
-
 }
 
-
-#wrapper h1{
+#wrapper h1 {
   font-size: 6vmin;
   margin: 0px;
 }
 
-#restart{
+#restart {
   position: fixed;
   top: 1vmin;
   left: 1vmin;
@@ -275,5 +254,4 @@ font-size: 3.5vmin;
   border-radius: 3vmin;
   border: none;
   padding: 1vmin 3vmin;
-
 }

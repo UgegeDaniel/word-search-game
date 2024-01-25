@@ -1,18 +1,20 @@
 const config = {
   //function to run before game runs return boolean
   validateGamePlay: () => {
-    const userDetails = {
-      userId: "",
-      email: "",
-      userName: "",
-      walletBalnce: "",
-      attemptsBalance: "",
-    };
-    // const { attemptsRemaining } = JSON.parse(
-    //   localStorage.getItem("word-search-game-details")
-    // );
-    //check if user attempts greater than 0
-    //if user attempts is 0 show modal to buy more attempts
+    const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+    if (userDetails.attemptsBalance === 0) {
+      const winLose = document.querySelector("#win-lose");
+      const overlay = document.querySelector("#overlay");
+      const attemptBalanceDisplay = document.querySelector("#attempts-balance");
+      const walletBalanceDisplay = document.querySelector("#wallet-balance");
+      const newGameButton = document.querySelector("#newGame");
+      overlay.style.display = "block";
+      winLose.innerText = `You have no attempts left `;
+      attemptBalanceDisplay.innerText = `You have ${userDetails.attemptsBalance} attempts left`;
+      walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance}`;
+      newGameButton.style.display = "none";
+      return false;
+    }
     //return false
     return true;
   },
@@ -44,38 +46,93 @@ const config = {
   instructionsId: "instructions",
   themeId: "#wordTheme",
   timer: {
-    duration: 20,
+    duration: 2,
     containerId: "#timer",
     timerCallback: function () {
       const winLose = document.querySelector("#win-lose");
       const overlay = document.querySelector("#overlay");
-      const currentPlay = document.querySelector("#current-play");
-      // const worldRecord = document.querySelector("#world-record");
-
-      //reduce number of attempts and update display
+      const attemptBalanceDisplay = document.querySelector("#attempts-balance");
+      const walletBalanceDisplay = document.querySelector("#wallet-balance");
+      const newGameButton = document.querySelector("#newGame");
+      const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+      if (
+        userDetails.attemptsBalance === 0 ||
+        userDetails.attemptsBalance - 1 === 0
+      ) {
+        if (userDetails.attemptsBalance - 1 === 0) {
+          localStorage.setItem(
+            "ws-userDetails",
+            JSON.stringify({
+              ...userDetails,
+              attemptsBalance: userDetails.attemptsBalance - 1,
+            })
+          );
+        }
+        overlay.style.display = "block";
+        winLose.innerText = `You Lose 😢`;
+        attemptBalanceDisplay.innerText = "You have used up all your attempts";
+        walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance}`;
+        newGameButton.style.display = "none";
+        return;
+      }
+      localStorage.setItem(
+        "ws-userDetails",
+        JSON.stringify({
+          ...userDetails,
+          attemptsBalance: userDetails.attemptsBalance - 1,
+        })
+      );
       overlay.style.display = "block";
       winLose.innerText = `You Lose 😢`;
-      currentPlay.innerText = `Current Time : ${100}`;
-      // worldRecord.innerText = `World Record 🥇: `;
-
-      //Return to homepage button
-      //Try again button
+      attemptBalanceDisplay.innerText = `You have ${
+        userDetails.attemptsBalance - 1
+      } attempts left`;
+      walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance}`;
+      newGameButton.innerText = "Try Again";
     },
   },
   onSuccess: function () {
     const winLose = document.querySelector("#win-lose");
     const overlay = document.querySelector("#overlay");
-    const currentPlay = document.querySelector("#current-play");
-    // const worldRecord = document.querySelector("#world-record");
-
-    //reduce number of attempts and update display
-    //reward User functionality
+    const attemptBalanceDisplay = document.querySelector("#attempts-balance");
+    const walletBalanceDisplay = document.querySelector("#wallet-balance");
+    const newGameButton = document.querySelector("#newGame");
+    const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+    const reward = JSON.parse(localStorage.getItem("ws-reward"));
+    if (
+      userDetails.attemptsBalance === 0 ||
+      userDetails.attemptsBalance - 1 === 0
+    ) {
+      if (userDetails.attemptsBalance - 1 === 0) {
+        localStorage.setItem(
+          "ws-userDetails",
+          JSON.stringify({
+            ...userDetails,
+            attemptsBalance: userDetails.attemptsBalance - 1,
+          })
+        );
+      }
+      overlay.style.display = "block";
+      winLose.innerText = `You Win 🎉`;
+      attemptBalanceDisplay.innerText = "You have used up all your attempts";
+      walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance} + ₦${reward}`;
+      newGameButton.style.display = "none";
+      return;
+    }
     overlay.style.display = "block";
     winLose.innerText = `You Win 🎉`;
-    currentPlay.innerText = `Current Time : ${100}`;
-    // worldRecord.innerText = `World Record 🥇: `;
-
-    //Return to homepage button
-    //Keep playing button
+    attemptBalanceDisplay.innerText = `You have ${
+      userDetails.attemptsBalance - 1
+    } attempts left`;
+    walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance} + ₦${reward}`;
+    newGameButton.innerText = "Keep Playing";
+    localStorage.setItem(
+      "ws-userDetails",
+      JSON.stringify({
+        ...userDetails,
+        walletBalance: userDetails.walletBalance + reward,
+        attemptsBalance: userDetails.attemptsBalance - 1,
+      })
+    );
   },
 };

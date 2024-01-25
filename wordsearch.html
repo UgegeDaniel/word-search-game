@@ -12,24 +12,21 @@
 </head>
 
 <body>
-	<div id="overlay">
-		<div id="card">
-			<div id="wrapper">
-				<h1 id="win-lose"></h1>
-			</div>
-			<div id="player-info-container">
-				<div id="current-play" className="play-info">
-					<span className="header">Attempts Remaining:</span>
-				</div>
-				<!-- <div id="world-record" className="play-info">
-					<span className="header">World Record✨:</span>
-				</div> -->
-			</div>
 
-			<button class="button" id="home">Go Back To Homepage</button>
-			<button class="button" id="newGame">Play Again</button>
+	<div id="overlay">
+		<div id="card" class="flex">
+		  <div class="flexCol vertical-centre">
+			<h1 id="win-lose"></h1>
+			   <div id="attempts-balance" className="play-info">
+				</div>
+			   <div id="wallet-balance" className="play-info">
+				</div>
+			<button class="button btn-lg" id="buyMore">Buy More Attempts</button>
+			<button class="button btn-lg" id="newGame"></button>
+			<button class="button btn-lg sec-button" id="home">Go Back To Homepage</button>
 		</div>
-	</div>
+		</div>
+	  </div>
 
 	<div id="game">
 		<div id="selection-wrapper">
@@ -60,7 +57,7 @@
 				new WordSearchController();
 			}
 		})
-		const homeBtn = document.querySelector("#home");
+		const homeBtn = document.querySelector("#buyMore");
 		homeBtn.addEventListener("click", ()=>{
 			window.location.href = "index.html";
 		})

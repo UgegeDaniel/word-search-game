@@ -64,6 +64,11 @@
   width: 200px;
 }
 
+.btn-lg {
+  width: 200px;
+  margin-top: 20px;
+}
+
 .sec-button {
   color: var(--orange);
   background-color: white;
