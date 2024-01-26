@@ -22,9 +22,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 40px
+  gap: 40px;
 }
-.vertical-centre{
+.vertical-centre {
   margin: auto 0;
 }
 .flexCol label {
@@ -114,21 +114,29 @@
   background-color: rgb(205, 188, 90);
 }
 
-.cell.found {
-  background-color: var(--random-seed);
+/* .cell.found { */
+  /* background-color: var(--random-seed); */
   /* background-color: rgb(158, 149, 123); */
-  border: 1px black solid;
-  font-weight: bold;
+  /* border: 1px black solid; */
+  /* font-weight: bold; */
+/* } */
+
+span.foundWord{
+  position: relative;
 }
 
-#found-words span::before {
+span.foundWord::before {
   content: "";
   position: absolute;
-  top: 50%;
-  width: var(--lineWidth);
-  height: 0.3vmin;
-  background: var(--lineColor);
+  top: 40%;
+  right: -10%;
+  width: 120%;
+  background-color: #6D7CFF;
+  color: #6D7CFF;
+  padding: 1px;
+  border-radius: 10px;
   transition: all 0.5s ease-in-out;
+  z-index: 10;
 }
 
 .listRow {

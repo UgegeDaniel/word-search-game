@@ -17,14 +17,14 @@ function WordSearchController() {
   //variables to store game logic and it's view
   var game;
   var view;
-
+  
   //instructions to display in h2 header
   var mainInstructions =
-    "Search for the list of words inside the box and click-and-drag to select them!";
-
+  "Search for the list of words inside the box and click-and-drag to select them!";
+  
   //function call to start the word search game
   setUpWordSearch();
-
+  
   function setUpWordSearch() {
     var themesOfWords = Object.keys(wordsToSearch);
     var randIndex = Math.floor(Math.random() * themesOfWords.length);

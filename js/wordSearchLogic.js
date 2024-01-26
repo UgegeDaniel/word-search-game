@@ -3,10 +3,7 @@
 //object to hold common board variables
 var board = {
   matrix: [], //empty array where the matrix will go
-  dimensions: {
-    rows: config.board.rows,
-    columns: config.board.rows,
-  },
+  boardSize: config.board.boardSize,
 }; //rent word being fit into matrix
 var currentWord = {
   viablePaths: [], //array of orientations the word can take
@@ -18,21 +15,18 @@ function WordSearchLogic(list) {
   var wordLocations = {};
 
   this.setUpGame = function () {
-    board.matrix = createMatrix(
-      board.dimensions.rows,
-      board.dimensions.columns
-    );
-    if(typeof config.board.initGridStyling === 'function'){
-      // config.board.initGridStyling(config.gameContainerId);
-    }
+    board.matrix = createMatrix(board.boardSize);
+    // if(typeof config.board.initGridStyling === 'function'){
+    // config.board.initGridStyling(config.gameContainerId);
+    // }
     fitWordsIntoMatrix(list, board.matrix);
     fillWithRandomLetters(board.matrix);
   };
 
-  function createMatrix(NumberOfRows, NumberOfColumns) {
-    var matrix = new Array(NumberOfRows);
-    for (var i = 0; i < NumberOfRows; i++) {
-      matrix[i] = new Array(NumberOfColumns);
+  function createMatrix(boardSize) {
+    var matrix = new Array(boardSize);
+    for (var i = 0; i < boardSize; i++) {
+      matrix[i] = new Array(boardSize);
     }
     return matrix;
   }

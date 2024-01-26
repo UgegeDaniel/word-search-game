@@ -5,8 +5,8 @@ const config = {
     if (userDetails.attemptsBalance === 0) {
       const winLose = document.querySelector("#win-lose");
       const overlay = document.querySelector("#overlay");
-      const attemptBalanceDisplay = document.querySelector("#attempts-balance");
-      const walletBalanceDisplay = document.querySelector("#wallet-balance");
+      const attemptBalanceDisplay = document.querySelector(".attempts-balance");
+      const walletBalanceDisplay = document.querySelector(".wallet-balance");
       const newGameButton = document.querySelector("#newGame");
       overlay.style.display = "block";
       winLose.innerText = `You have no attempts left `;
@@ -15,12 +15,10 @@ const config = {
       newGameButton.style.display = "none";
       return false;
     }
-    //return false
     return true;
   },
   board: {
-    rows: 12,
-    columns: 10,
+    boardSize: 10,
     initGridStyling: function (gridContainerId) {
       const gridContainer = document.querySelector(gridContainerId);
       gridContainer.style.setProperty("--gridColumnSize", `${this.columns}`);
@@ -40,19 +38,24 @@ const config = {
   },
   newGameButtonId: "#newGame",
   newGameCallback: function () {
+    const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+    const attemptBalanceDisplay = document.querySelector("#attempts-balance");
+    const walletBalanceDisplay = document.querySelector("#wallet-balance");
+    attemptBalanceDisplay.innerText = `${userDetails.attemptsBalance}`;
+    walletBalanceDisplay.innerText = `₦${userDetails.walletBalance}`;
     const overlay = document.querySelector("#overlay");
     overlay.style.display = "none";
   },
   instructionsId: "instructions",
   themeId: "#wordTheme",
   timer: {
-    duration: 2,
+    duration: 20,
     containerId: "#timer",
     timerCallback: function () {
       const winLose = document.querySelector("#win-lose");
       const overlay = document.querySelector("#overlay");
-      const attemptBalanceDisplay = document.querySelector("#attempts-balance");
-      const walletBalanceDisplay = document.querySelector("#wallet-balance");
+      const attemptBalanceDisplay = document.querySelector(".attempts-balance");
+      const walletBalanceDisplay = document.querySelector(".wallet-balance");
       const newGameButton = document.querySelector("#newGame");
       const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
       if (
@@ -94,8 +97,8 @@ const config = {
   onSuccess: function () {
     const winLose = document.querySelector("#win-lose");
     const overlay = document.querySelector("#overlay");
-    const attemptBalanceDisplay = document.querySelector("#attempts-balance");
-    const walletBalanceDisplay = document.querySelector("#wallet-balance");
+    const attemptBalanceDisplay = document.querySelector(".attempts-balance");
+    const walletBalanceDisplay = document.querySelector(".wallet-balance");
     const newGameButton = document.querySelector("#newGame");
     const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
     const reward = JSON.parse(localStorage.getItem("ws-reward"));

@@ -279,21 +279,10 @@ function WordSearchView(matrix, list) {
 
       //checks if a word on the list was selected
       if (validWordMade(list, wordMade, config.instructionsId)) {
-        $(select.selected).addClass("found");
-        const letters = "0123456789ABCDEF";
-        let seed = "#";
-        for (let i = 0; i < 6; i++) {
-          seed += letters[Math.floor(Math.random() * 16)];
-        }
-        const randomColor = getComputedStyle(
-          document.documentElement
-        ).getPropertyValue("--random-seed");
-        document.querySelectorAll(".found").forEach((foundCell) => {
-          console.log(randomColor);
-          foundCell.style.backgroundColor = randomColor;
-          // foundCell.style.colo = randomColor;
+        $(select.selected).addClass("foundCell");
+        document.querySelectorAll(".foundCell").forEach((foundCell) => {
+          foundCell.style.backgroundColor = "#6D7CFF";
         });
-        document.documentElement.style.setProperty("--random-seed", seed);
       }
 
       //unselects any selected letters
@@ -521,7 +510,7 @@ function WordSearchView(matrix, list) {
           wordToCheck == reversedWord(trimmedWord)
         ) {
           //sets the word inside the list div as found (changes color, strikethroughs text)
-          $(".listWord[text = " + trimmedWord + "]").addClass("found");
+          $(".listWord[text = " + trimmedWord + "]").addClass("foundWord");
 
           //checks if the last word to find was found
           checkPuzzleSolved(
@@ -550,7 +539,7 @@ function WordSearchView(matrix, list) {
       //if user solved the puzzle themselves
       if (selfSolved) {
         //updates h2 text
-        $(config.instructionsId).text("You got 'em all! :D");
+        config.onSuccess();
       }
 
       //if user used the solve button

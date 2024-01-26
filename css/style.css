@@ -18,28 +18,28 @@ body {
   user-select: none;
 }
 
-#grid-container {
-  display: grid;
+/* #grid-container {
+  /* display: grid;
   gap: 1vmin 3vmin;
   grid-template-columns: repeat(var(--gridColumnSize), 7vmin);
-  grid-template-rows: repeat(var(--gridRowSize), 7vmin);
+  grid-template-rows: repeat(var(--gridRowSize), 7vmin); */
 
-  /*grid template columns and rows are controlled by js see line 55 and 56 in script.js*/
-}
+/*grid template columns and rows are controlled by js see line 55 and 56 in script.js*/
+/* } */
 
 #game {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  /* top: 50%; */
+  /* transform: translateY(-50%); */
   height: 100vh;
 }
 @media screen and (max-width: 1400px) {
   #game {
     flex-direction: column;
-    justify-content: space-around;
+    /* justify-content: space-around; */
   }
 
   #selection-wrapper {
@@ -61,25 +61,28 @@ body {
   background-color: var(--orange);
 }
 
-#found-words {
+/* #found-words {
   display: flex;
   justify-content: space-around;
   margin-bottom: 3vh;
   flex-wrap: wrap;
-}
+} */
 
-#found-words span {
+/* #found-words span {
   font-size: 3vmin;
-}
+} */
+/* .listword.found {
+  background: none;
+} */
 
 @media screen and (max-width: 400px) {
-  #found-words span {
+  /* #found-words span {
     font-size: 4.5vmin;
-  }
+  } */
 
-  #found-words span::before {
+  /* #found-words span::before {
     height: 0.7vmin !important;
-  }
+  } */
 
   .grid-items {
     font-size: 3.8vmin !important;
@@ -87,7 +90,7 @@ body {
 }
 
 #selected-letters {
-  font-size: 9vmin;
+  font-size: 7vmin;
   text-align: center;
   margin-bottom: 1vh;
   color: var(--orange);
@@ -97,21 +100,21 @@ body {
   display: flex;
 }
 
-#timer {
-  position: fixed;
-  font-size: 3vmin;
-}
+/* #timer { */
+/* position: fixed; */
+/* font-size: 3vmin; */
+/* } */
 
 #selection-wrapper {
   width: 26vw;
 }
 
-#found-words span {
+/* #found-words span {
   transition: all 0.5s ease-in-out;
   position: relative;
-}
+} */
 
-#found-words span::before {
+/* #found-words span::before {
   content: "";
   position: absolute;
   top: 50%;
@@ -119,7 +122,7 @@ body {
   height: 0.3vmin;
   background: var(--lineColor);
   transition: all 0.5s ease-in-out;
-}
+} */
 
 #overlay {
   background-color: rgba(0, 0, 0, 0.4);
@@ -173,13 +176,13 @@ body {
   }
 }
 
-#timer {
+/* #timer {
   border-radius: 2px;
-  position: fixed;
-  top: 0;
+  /* position: fixed; */
+/* top: 0;
   right: 0;
-  font-size: 1.9rem;
-}
+  font-size: 1.9rem; */
+/* } */
 
 #player-info-container {
   height: 27vmin;
@@ -191,19 +194,19 @@ body {
   font-size: 2vmin;
 }
 
-#wallet-balance,
-#attempts-balance,
-#personal-best,
-#world-record {
-  padding: 3vmin;
+.balance {
+  padding: 2vmin;
   width: inherit;
   border-radius: 1vmin;
   color: white;
   margin-bottom: 10px;
   min-width: 200px;
+  height: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-#wallet-balance,
-#attempts-balance {
+.balance {
   background: #152938;
 }
 #personal-best {
