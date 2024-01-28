@@ -1,182 +1,166 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Word Search Game!</title>
-    <!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/additional-css.css" />
-  </head>
 
-  <body>
-    <div id="overlay">
-      <div id="card" class="flex">
-        <!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
-        <div class="flexCol vertical-centre">
-          <button class="button btn-lg" onclick="proceedToPayementGateway()">
-            Proceed With Payment
-          </button>
-          <button class="button btn-lg sec-button" onclick="closeModal()">
-            Quit
-          </button>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Search Game!</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/additional-css.css" /> -->
+</head>
+
+<body>
+  <div id="overlay">
+    <div id="card" class="flex">
+      <!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
+      <div class="flexCol vertical-centre">
+        <button class="button btn-lg" onclick="proceedToPayementGateway()">
+          Proceed With Payment
+        </button>
+        <button class="button btn-lg sec-button" onclick="closeModal()">
+          Quit
+        </button>
       </div>
     </div>
+  </div>
 
-    <div clas="payment-details">
-      <div class="" id="selected-letters">Word Search</div>
-      <div class="flexCol">
-        <div class="input-field">
-          <div class="input-field flexCol">
-            <label for="reward">Your Attempts Balance:</label>
-            <input id="attemptBalance" type="text" readonly />
-          </div>
-          <div class="input-field flexCol">
-            <label for="reward">Your Wallet Balance:</label>
-            <input id="walletBalance" type="text" readonly />
-          </div>
-          <label for="costPerAttempt">Cost per Attempt:</label>
-          <select
-            required
-            id="costPerAttempt"
-            onchange="calculateRewardAmount()"
-          >
-            <option value="5">₦5</option>
-            <option value="10">₦10</option>
-            <option value="15">₦15</option>
-            <option value="20">₦20</option>
-          </select>
-        </div>
-
-        <div class="input-field flexCol">
-          <label for="reward">Reward:</label>
-          <input id="reward" type="text" readonly />
-        </div>
-        <div class="input-field flexCol">
-          <label for="attempts">Number of Attempts:</label>
-          <input
-            required
-            id="attempts"
-            type="number"
-            oninput="calculateAmountToPay()"
-          />
-        </div>
-        <div class="input-field flexCol">
-          <label for="amountToPay">Amount to Pay:</label>
-          <input id="amountToPay" type="text" readonly />
-        </div>
-        <div class="flex">
-          <button
-            class="button inline-button"
-            id="payButton"
-            onclick="confirmPaymentDetails()"
-          >
-            Pay
-          </button>
-          <button
-            class="button inline-button sec-button"
-            id="payButton"
-            onclick="gotoInstaructionsPage()"
-          >
-            Skip
-          </button>
-        </div>
+  <div>
+    <h2 class="" id="selected-letters">Word Search</h2>
+    <div class="flexCol payment-details">
+      <div class="input-field flexCol">
+        <label for="reward">Your Attempts Balance:</label>
+        <input id="attemptBalance" type="text" readonly />
+      </div>
+      <div class="input-field flexCol">
+        <label for="reward">Your Wallet Balance:</label>
+        <input id="walletBalance" type="text" readonly />
+      </div>
+      <div class="input-field flexCol">
+        <label for="costPerAttempt">Cost per Attempt:</label>
+        <select required id="costPerAttempt" onchange="calculateRewardAmount()">
+          <option value="5">₦5</option>
+          <option value="10">₦10</option>
+          <option value="15">₦15</option>
+          <option value="20">₦20</option>
+        </select>
+      </div>
+      <div class="input-field flexCol">
+        <label for="reward">Reward:</label>
+        <input id="reward" type="text" readonly />
+      </div>
+      <div class="input-field flexCol">
+        <label for="attempts">Number of Attempts:</label>
+        <input required id="attempts" type="number" oninput="calculateAmountToPay()" />
+      </div>
+      <div class="input-field flexCol">
+        <label for="amountToPay">Amount to Pay:</label>
+        <input id="amountToPay" type="text" readonly />
       </div>
     </div>
+    <div class="flex payment-footer">
+      <button class="button inline-button" id="payButton" onclick="confirmPaymentDetails()">
+        Pay
+      </button>
+      <button class="button inline-button sec-button" id="skipButton" onclick="gotoInstaructionsPage()">
+        Skip
+      </button>
+    </div>
+  </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-    <script src="js/config.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/wordsToSearch.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/wordPaths.js"></script>
-    <script src="js/wordSearchController.js"></script>
-    <script src="js/wordSearchlogic.js"></script>
-    <script src="js/wordSearchview.js"></script>
-    <script src="js/wordSearchMiniView.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/wordsToSearch.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/wordPaths.js"></script>
+  <script src="js/wordSearchController.js"></script>
+  <script src="js/wordSearchlogic.js"></script>
+  <script src="js/wordSearchview.js"></script>
+  <script src="js/wordSearchMiniView.js"></script>
 
-    <script>
-      const attemptBalanceElement = document.querySelector("#attemptBalance");
-      const walletBalanceElement = document.querySelector("#walletBalance");
-      const costPerAttemptElement = document.querySelector("#costPerAttempt");
-      const rewardElement = document.querySelector("#reward");
-      const attemptsElement = document.querySelector("#attempts");
-      const amountToPayElement = document.querySelector("#amountToPay");
-      const overlayElement = document.querySelector("#overlay");
-      rewardElement.value = `${Number(costPerAttemptElement.value) * 200}`;
+  <script>
+    const attemptBalanceElement = document.querySelector("#attemptBalance");
+    const walletBalanceElement = document.querySelector("#walletBalance");
+    const costPerAttemptElement = document.querySelector("#costPerAttempt");
+    const rewardElement = document.querySelector("#reward");
+    const attemptsElement = document.querySelector("#attempts");
+    const amountToPayElement = document.querySelector("#amountToPay");
+    const overlayElement = document.querySelector("#overlay");
+    rewardElement.value = `${Number(costPerAttemptElement.value) * 200}`;
 
-      function initializeDemoDetails() {
-        const userDetails = {
-          userId: 1,
-          email: "johnDoe@example.com",
-          userName: "John Doe",
-          walletBalance: 1000,
-          attemptsBalance: 0,
-        };
-        localStorage.setItem("ws-userDetails", JSON.stringify(userDetails));
-      }
+    function initializeDemoDetails() {
+      const userDetails = {
+        userId: 1,
+        email: "johnDoe@example.com",
+        userName: "John Doe",
+        walletBalance: 1000,
+        attemptsBalance: 0,
+      };
+      localStorage.setItem("ws-userDetails", JSON.stringify(userDetails));
+    }
 
-      initializeDemoDetails();
+    initializeDemoDetails();
 
-      const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
-      attemptBalanceElement.value = userDetails.attemptsBalance;
-      walletBalanceElement.value = `₦${userDetails.walletBalance}`;
+    const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+    attemptBalanceElement.value = userDetails.attemptsBalance;
+    walletBalanceElement.value = `₦${userDetails.walletBalance}`;
 
-      function calculateRewardAmount() {
-        rewardElement.value = `₦${Number(costPerAttemptElement.value) * 200}`;
-      }
+    function calculateRewardAmount() {
+      rewardElement.value = `₦${Number(costPerAttemptElement.value) * 200}`;
+    }
 
-      function calculateAmountToPay() {
-        amountToPayElement.value = `₦${
-          Number(costPerAttemptElement.value) * Number(attemptsElement.value)
+    function calculateAmountToPay() {
+      amountToPayElement.value = `₦${Number(costPerAttemptElement.value) * Number(attemptsElement.value)
         }`;
-      }
+    }
 
-      function confirmPaymentDetails() {
-        if (!attemptsElement.value) {
-          alert(`Please provide the number of attempts you want`);
-          return;
-        }
-        overlayElement.style.display = "block";
+    function confirmPaymentDetails() {
+      if (!attemptsElement.value) {
+        alert(`Please provide the number of attempts you want`);
         return;
       }
+      overlayElement.style.display = "block";
+      return;
+    }
 
-      function closeModal() {
-        overlayElement.style.display = "none";
-      }
+    function closeModal() {
+      overlayElement.style.display = "none";
+    }
 
-      function proceedToPayementGateway() {
-        const userToPay =
-          Number(costPerAttemptElement.value) * Number(attemptsElement.value);
-        if (userToPay > userDetails.walletBalance) {
-          alert(
-            `Insufficient Wallet Balnce ... Kindly fund your wallet to continue`
-          );
-          return;
-        }
-        const newWalletBalance = userDetails.walletBalance - userToPay;
-        const newAttemptsBalance =
-          userDetails.attemptsBalance + Number(attemptsElement.value);
-        localStorage.setItem(
-          "ws-userDetails",
-          JSON.stringify({
-            ...userDetails,
-            walletBalance: newWalletBalance,
-            attemptsBalance: newAttemptsBalance,
-          })
-        );
-        localStorage.setItem("ws-reward", rewardElement.value);
+    function proceedToPayementGateway() {
+      const userToPay =
+        Number(costPerAttemptElement.value) * Number(attemptsElement.value);
+      if (userToPay > userDetails.walletBalance) {
         alert(
-          `Your new wallet balance is ₦${newWalletBalance}
-           You now have ${newAttemptsBalance} attempts`
+          `Insufficient Wallet Balnce ... Kindly fund your wallet to continue`
         );
-        gotoInstaructionsPage();
+        return;
       }
+      const newWalletBalance = userDetails.walletBalance - userToPay;
+      const newAttemptsBalance =
+        userDetails.attemptsBalance + Number(attemptsElement.value);
+      localStorage.setItem(
+        "ws-userDetails",
+        JSON.stringify({
+          ...userDetails,
+          walletBalance: newWalletBalance,
+          attemptsBalance: newAttemptsBalance,
+        })
+      );
+      localStorage.setItem("ws-reward", rewardElement.value);
+      alert(
+        `Your new wallet balance is ₦${newWalletBalance}
+           You now have ${newAttemptsBalance} attempts`
+      );
+      gotoInstaructionsPage();
+    }
 
-      function gotoInstaructionsPage() {
-        window.location.href = "instructions.html";
-      }
-    </script>
-  </body>
+    function gotoInstaructionsPage() {
+      window.location.href = "instructions.html";
+    }
+  </script>
+</body>
+
 </html>
