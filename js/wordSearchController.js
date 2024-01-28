@@ -17,14 +17,14 @@ function WordSearchController() {
   //variables to store game logic and it's view
   var game;
   var view;
-  
+
   //instructions to display in h2 header
   var mainInstructions =
-  "Search for the list of words inside the box and click-and-drag to select them!";
-  
+    "Search for the list of words inside the box and click-and-drag to select them!";
+
   //function call to start the word search game
   setUpWordSearch();
-  
+
   function setUpWordSearch() {
     var themesOfWords = Object.keys(wordsToSearch);
     var randIndex = Math.floor(Math.random() * themesOfWords.length);
@@ -48,17 +48,22 @@ function WordSearchController() {
     countdownTimer(config.timer.duration, config.timer.timerCallback);
     convertToUpperCase(resultArray);
 
+
     //sets the headings to reflect the instructions and themes
     updateHeadings(mainInstructions, themesOfWords[randIndex]);
 
-    //runs the logic of the game using a close of the word list (to avoid the actual object being altered)
+    //generates the view of the game and sets up mouse events for clicking and dragging
     game = new WordSearchLogic(resultArray.slice());
     game.setUpGame();
-
-    //generates the view of the game and sets up mouse events for clicking and dragging
-    view = new WordSearchView(game.getMatrix(), game.getListOfWords());
+    console.log(getDeviceType());
+    view =
+      getDeviceType() === "Phone" || getDeviceType() === "Tablet"
+        ? new WordSearchMiniView(game.getMatrix(), game.getListOfWords())
+        : new WordSearchView(game.getMatrix(), game.getListOfWords());
     view.setUpView();
-    view.triggerMouseDrag();
+    getDeviceType() === "Phone" || getDeviceType() === "Tablet"
+      ? view.triggerTouchDrag()
+      : view.triggerMouseDrag();
   }
 
   /** updates the instructions (h2) and theme (h3) headings according to the given

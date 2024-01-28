@@ -3,7 +3,7 @@
 /** This object contains the necessary functions to create the 'view' of the word search,
  * which essentially refers to displaying the puzzle and handling mouse events!
  *
- * @author Noor Aftab
+ * @author Ugege Daniel
  *
  * @param {Array[]} matrix - 2D array containing the filled word search grid
  * @param {Array[]} list - 2D array containing the list of words in the grid
@@ -13,8 +13,6 @@
  */
 
 function WordSearchView(matrix, list) {
-  "use strict";
-
   //variable to store if the puzzle was solved by the player or by the solve button!
   var selfSolved = true;
 
@@ -538,14 +536,9 @@ function WordSearchView(matrix, list) {
     if ($(fullList).length == $(foundWordsList).length) {
       //if user solved the puzzle themselves
       if (selfSolved) {
-        //updates h2 text
         config.onSuccess();
-      }
-
-      //if user used the solve button
-      else {
-        //updates h2 text
-        $(config.instructionsId).text("We solved it for you! :~)");
+      } else {
+        console.log("You clicked the auto solve button");
       }
 
       return true;

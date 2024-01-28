@@ -24,3 +24,16 @@ function removeDuplicates(arr) {
     return self.indexOf(value) === index;
   });
 }
+
+function getDeviceType() {
+  var documentWidth = window.screen.availWidth;
+  var tabletWidth = 768;
+  var phoneWidth = 576;
+  if (documentWidth >= tabletWidth) {
+    return "Laptop";
+  } else if (documentWidth >= phoneWidth) {
+    return "Tablet";
+  } else {
+    return "Phone";
+  }
+}

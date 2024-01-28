@@ -24,9 +24,11 @@
   justify-content: space-between;
   gap: 40px;
 }
+
 .vertical-centre {
   margin: auto 0;
 }
+
 .flexCol label {
   font-size: 20px;
   text-align: left;
@@ -85,10 +87,9 @@
   margin: 3px 7px;
   border: none;
   display: table-cell;
-  height: 30px;
-  width: 30px;
-  font-size: 17px;
-  padding: 0;
+  height: 50px;
+  width: 50px;
+  padding: 2px;
   outline: 0;
   font-weight: 600;
   background-color: transparent;
@@ -115,13 +116,13 @@
 }
 
 /* .cell.found { */
-  /* background-color: var(--random-seed); */
-  /* background-color: rgb(158, 149, 123); */
-  /* border: 1px black solid; */
-  /* font-weight: bold; */
+/* background-color: var(--random-seed); */
+/* background-color: rgb(158, 149, 123); */
+/* border: 1px black solid; */
+/* font-weight: bold; */
 /* } */
 
-span.foundWord{
+span.foundWord {
   position: relative;
 }
 
@@ -161,11 +162,42 @@ span.foundWord::before {
   text-align: center;
 }
 
-@media screen and (max-width: 800px) {
+#grid-wrapper {
+  min-height: 70vh;
+  min-width: 85vw;
+}
+
+#grid-container {
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.boardRow {
+  flex: 1;
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.cell {
+  font-size: 1.5em;
+  /* Adjust the multiplier as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* border: 1px solid black; */
+  flex: 1
+}
+
+/* @media screen and (max-width: 800px) {
   #grid-wrapper {
     margin-top: -500px;
   }
-}
+} */
 
 .inline-button {
   display: inline-block;
