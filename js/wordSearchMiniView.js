@@ -506,11 +506,7 @@ function WordSearchMiniView(matrix, list) {
             $(".listWord[text = " + trimmedWord + "]").addClass("foundWord");
 
             //checks if the last word to find was found
-            checkPuzzleSolved(
-              ".listWord",
-              ".listWord.found",
-              config.instructionsId
-            );
+            checkPuzzleSolved(".listWord", ".listWord.foundWord");
 
             return true;
           }
@@ -528,9 +524,13 @@ function WordSearchMiniView(matrix, list) {
      */
     function checkPuzzleSolved(fullList, foundWordsList) {
       //if all the words in the list to find have been found (no. of words to find == no. of found words)
-      if ($(fullList).length == $(foundWordsList).length) {
+      if (
+        document.querySelectorAll(fullList).length ==
+        document.querySelectorAll(foundWordsList).length
+      ) {
         //if user solved the puzzle themselves
         if (selfSolved) {
+          console.log("Solved");
           config.onSuccess();
         } else {
           console.log("You clicked the auto solve button");

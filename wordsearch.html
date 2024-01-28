@@ -1,88 +1,90 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Word Search Game!</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="stylesheet" type="text/css" href="css/additional-css.css" />
-    <link rel="stylesheet" type="text/css" href="css/responsive.css" />
-    <!-- <link rel="stylesheet" type="text/css" href="css/responsive-styles.css"> -->
-  </head>
 
-  <body>
-    <div id="overlay">
-      <div id="card" class="flex">
-        <div class="flexCol vertical-centre">
-          <h1 id="win-lose"></h1>
-          <div class="play-info balance attempts-balance"></div>
-          <!-- Changed className to class -->
-          <div class="play-info balance wallet-balance"></div>
-          <!-- Changed className to class -->
-          <button class="button btn-lg" id="buyMore">Buy More Attempts</button>
-          <button class="button btn-lg" id="newGame"></button>
-          <button class="button btn-lg sec-button" id="home">
-            Go Back To Homepage
-          </button>
-        </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Word Search Game!</title>
+  <!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <!-- <link rel="stylesheet" type="text/css" href="css/additional-css.css" /> -->
+</head>
+
+<body>
+  <div id="overlay">
+    <div id="card" class="flex">
+      <div class="flexCol vertical-centre">
+        <h1 id="win-lose"></h1>
+        <div class="play-info balance attempts-balance"></div>
+        <!-- Changed className to class -->
+        <div class="play-info balance wallet-balance"></div>
+        <!-- Changed className to class -->
+        <button class="button btn-lg" id="buyMore">Buy More Attempts</button>
+        <button class="button btn-lg" id="newGame"></button>
+        <button class="button btn-lg sec-button" id="home">
+          Go Back To Homepage
+        </button>
       </div>
     </div>
+  </div>
 
-    <div id="game">
-      <div class="flexCol">
-        <div class="" id="selected-letters">Word Search</div>
-        <div class="flex">
-          <div class="flexCol">
-            <div>Attempts Remaining</div>
-            <div id="attempts-balance" class="play-info balance"></div>
-          </div>
-          <div class="flexCol">
-            <div>Wallet Balance</div>
-            <div id="wallet-balance" class="play-info balance"></div>
-          </div>
-          <div class="flexCol">
-            <div>Timer</div>
-            <div id="timer" class="play-info balance"></div>
-          </div>
+  <div id="game flexCol">
+    <div class="flexCol">
+      <h2 class="" id="selected-letters">Word Search</h2>
+      <div class="flex">
+        <div class="flexCol game-control">
+          <div>Attempts Remaining</div>
+          <div id="attempts-balance" class="play-info balance"></div>
         </div>
-        <div id="found-words"></div>
+        <div class="flexCol game-control">
+          <div>Wallet Balance</div>
+          <div id="wallet-balance" class="play-info balance"></div>
+        </div>
+        <div class="flexCol game-control">
+          <div>Timer</div>
+          <div id="timer" class="play-info balance"></div>
+        </div>
       </div>
-      <div id="grid-wrapper">
-        <div id="grid-container"></div>
-      </div>
+      <div id="found-words"></div>
     </div>
+    <div id="grid-wrapper">
+      <div id="grid-container"></div>
+    </div>
+  </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <!-- Added quotes -->
-    <script src="js/config.js"></script>
-    <script src="js/timer.js"></script>
-    <script src="js/wordsToSearch.js"></script>
-    <script src="js/utils.js"></script>
-    <script src="js/wordPaths.js"></script>
-    <script src="js/wordSearchMiniView.js"></script>
-    <script src="js/wordSearchView.js"></script>
-    <script src="js/wordSearchController.js"></script>
-    <script src="js/wordSearchlogic.js"></script>
-    <script src="js/wordSearchlogic.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Added quotes -->
+  <script src="js/config.js"></script>
+  <script src="js/timer.js"></script>
+  <script src="js/wordsToSearch.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/wordPaths.js"></script>
+  <script src="js/wordSearchMiniView.js"></script>
+  <script src="js/wordSearchView.js"></script>
+  <script src="js/wordSearchController.js"></script>
+  <script src="js/wordSearchlogic.js"></script>
+  <script src="js/wordSearchlogic.js"></script>
 
-    <script>
-      $(document).ready(function () {
-        if (config.validateGamePlay()) {
-          const userDetails = JSON.parse(
-            localStorage.getItem("ws-userDetails")
-          );
-          const attemptBalanceDisplay =
-            document.querySelector("#attempts-balance");
-          const walletBalanceDisplay =
-            document.querySelector("#wallet-balance");
-          attemptBalanceDisplay.innerText = `${userDetails.attemptsBalance}`;
-          walletBalanceDisplay.innerText = `₦${userDetails.walletBalance}`;
-          new WordSearchController();
-        }
-      });
-      const homeBtn = document.querySelector("#buyMore");
-      homeBtn.addEventListener("click", () => {
-        window.location.href = "index.html";
-      });
-    </script>
-  </body>
+  <script>
+    $(document).ready(function () {
+      if (config.validateGamePlay()) {
+        const userDetails = JSON.parse(
+          localStorage.getItem("ws-userDetails")
+        );
+        const attemptBalanceDisplay =
+          document.querySelector("#attempts-balance");
+        const walletBalanceDisplay =
+          document.querySelector("#wallet-balance");
+        attemptBalanceDisplay.innerText = `${userDetails.attemptsBalance}`;
+        walletBalanceDisplay.innerText = `₦${userDetails.walletBalance}`;
+        new WordSearchController();
+      }
+    });
+    const homeBtn = document.querySelector("#buyMore");
+    homeBtn.addEventListener("click", () => {
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+
 </html>
