@@ -252,6 +252,7 @@ select::after {
 
 span.foundWord {
   position: relative;
+  color: #6D7CFF;
 }
 
 span.foundWord::before {
@@ -281,7 +282,7 @@ span.foundWord::before {
 
 .boardRow {
   flex: 1;
-  width: 80%;
+  width: 95%;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -362,6 +363,21 @@ span.foundWord::before {
 /* Phone styles here*/
 @media only screen and (max-width: 576px) {
   .game-control {
+    width: 100px;
+    font-size: 0.9em;
+  }
+
+  #attempts-balance,
+  #wallet-balance,
+  #timer {
     max-width: 100px;
+    padding: 5px;
+  }
+
+  #attempts-balance.balance,
+  #wallet-balance.balance,
+  #timer.balance {
+    min-width: 100px;
+    ;
   }
 }
