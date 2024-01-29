@@ -29,7 +29,7 @@ h1 {
 h2 {
   font-size: 3em;
   text-align: center;
-  margin-bottom: 1vh;
+  /* margin-bottom: 1vh; */
   color: var(--orange);
 }
 
@@ -242,7 +242,7 @@ select::after {
   justify-content: space-between;
   /* margin-bottom: 3vh; */
   flex-wrap: no-wrap;
-  max-width: 70vw;
+  max-width: 100%;
 }
 
 .listWord {
@@ -324,6 +324,9 @@ span.foundWord::before {
   background-color: rgb(205, 188, 90);
 }
 
+.cell.foundCell{
+  background-color: rgb(109, 124, 255);
+}
 /* Media queries */
 /* @media screen and (max-width: 1400px) {
   #game {
