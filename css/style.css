@@ -350,14 +350,14 @@ span.foundWord::before {
   #attempts-balance,
   #wallet-balance,
   #timer {
-    max-width: 100px;
+    max-width: 80px;
     padding: 5px;
   }
 
   #attempts-balance.balance,
   #wallet-balance.balance,
   #timer.balance {
-    min-width: 100px;
+    min-width: 80px;
     ;
   }
 }
@@ -366,21 +366,21 @@ span.foundWord::before {
 /* Phone styles here*/
 @media only screen and (max-width: 576px) {
   .game-control {
-    width: 100px;
+    width: 80px;
     font-size: 0.9em;
   }
 
   #attempts-balance,
   #wallet-balance,
   #timer {
-    max-width: 100px;
+    max-width: 80px;
     padding: 5px;
   }
 
   #attempts-balance.balance,
   #wallet-balance.balance,
   #timer.balance {
-    min-width: 100px;
+    min-width: 80px;
     ;
   }
 }
