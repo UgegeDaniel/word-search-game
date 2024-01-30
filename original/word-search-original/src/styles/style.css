@@ -1,0 +1,278 @@
+:root {
+  --orange: rgb(240, 120, 22);
+  --white: rgb(255, 255, 255);
+  --black: rgb(0, 0, 0);
+  --lineWidth: 0%;
+  --lineColor: none;
+  touch-action: none;
+  
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 0;
+  height: 100vh;
+  user-select: none;
+}
+
+#grid-container {
+    
+  display: grid;
+  gap: 1vmin 3vmin;
+  grid-template-columns: repeat(var(--gridColumnSize),7vmin);
+  grid-template-rows: repeat(var(--gridRowSize),7vmin);
+
+  
+  /*grid template columns and rows are controlled by js see line 55 and 56 in script.js*/
+}
+
+#game {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 100vh;
+}
+@media screen and (max-width: 1400px) {
+  #game {
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  #selection-wrapper {
+    width: 60vw !important;
+
+  }
+  
+ 
+}
+.grid-items {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3vmin;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+  border-radius: 50%;
+}
+
+.grid-items:hover {
+  color: var(--white);
+  background-color: var(--orange);
+}
+
+#found-words {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 3vh;
+  flex-wrap: wrap;
+}
+
+#found-words span {
+
+  font-size: 3vmin;
+}
+
+
+@media screen and (max-width: 400px) {
+
+  #found-words span {
+    font-size: 4.5vmin;
+  }
+
+  #found-words span::before{
+    height: 0.7vmin !important;
+  }
+
+  .grid-items{
+    font-size: 3.8vmin !important;
+  }
+  
+}
+
+#selected-letters {
+  font-size: 9vmin;
+  text-align: center;
+  margin-bottom: 1vh;
+  color: var(--orange);
+}
+
+#grid-wrapper {
+  display: flex;
+}
+
+#timer {
+  position: fixed;
+  font-size: 3vmin;
+}
+
+#selection-wrapper {
+  width: 26vw;
+}
+
+#found-words span{
+  transition: all 0.5s ease-in-out;
+  position: relative;
+}
+
+#found-words span::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: var(--lineWidth);
+  height: 0.3vmin;
+  background: var(--lineColor);
+  transition: all 0.5s ease-in-out;
+}
+
+#overlay{
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  position: fixed;
+  opacity: 0;
+  animation: fade-in 1s forwards;
+  display: none;  
+}
+
+#card{
+  height: 80vmin;
+  padding: 2vmin 5vmin;
+  width: 53vmin;
+  background: white;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  border-radius: 2vmin;
+  text-align: center;
+  overflow-y:scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#card::-webkit-scrollbar {
+  display: none;
+}
+
+
+  @media screen and (max-width: 550px){
+   #card{
+
+    height: 114vmin;
+    width: 80vmin;
+    padding: 5vmin;
+   } 
+
+  }
+
+
+@keyframes fade-in {
+  from {
+      opacity: 0;
+      backdrop-filter: blur(0px);
+   }
+  to {
+      opacity: 1;
+      backdrop-filter: blur(8px);
+    }
+  }
+
+
+  #timer{
+    border-radius: 2px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 1.9rem;
+  }
+
+
+#player-info-container{
+  height: 27vmin;
+  width: 49vmin;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 2vmin;
+
+  
+}
+
+#current-play,#personal-best,#world-record{
+  padding: 4vmin;
+  width: inherit;
+  border-radius: 1vmin;
+  color: white;
+}
+#current-play{
+  background: #152938;
+  
+}
+#personal-best{
+  background: #152938;
+  
+  
+}
+#world-record{
+  background: #DFE7EC;
+  color: #304859
+  
+}
+
+#new{
+  background: orange;
+  color: white;
+  font-size: 2vmin;
+  font-weight: 700;
+  width: 17vmin;
+  border-radius: 26px;
+  border: none;
+  padding: 2vmin 3vmin;
+}
+
+@media screen and (max-width: 550px){
+  #player-info-container{
+height: 44vmin;
+width: 60vmin;
+font-size: 3.5vmin;
+
+
+  }
+
+  #new{
+      font-size: 3.5vmin;
+      width: 25vmin;
+  }
+
+
+}
+
+
+#wrapper h1{
+  font-size: 6vmin;
+  margin: 0px;
+}
+
+#restart{
+  position: fixed;
+  top: 1vmin;
+  left: 1vmin;
+  background: var(--orange);
+  color: white;
+  font-size: 2vmin;
+  font-weight: 700;
+  border-radius: 3vmin;
+  border: none;
+  padding: 1vmin 3vmin;
+
+}
