@@ -18,7 +18,7 @@ const config = {
     return true;
   },
   board: {
-    boardSize: 10,
+    boardSize: 9,
     rows: 10,
     columns: 10, //this value has to be greater than or equal to the number of rows
     initGridStyling: function (gridContainerId) {
@@ -51,7 +51,7 @@ const config = {
   instructionsId: "instructions",
   themeId: "#wordTheme",
   timer: {
-    duration: 20,
+    duration: 15,
     containerId: "#timer",
     timerCallback: function () {
       const winLose = document.querySelector("#win-lose");
