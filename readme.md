@@ -69,6 +69,7 @@ const config = {
   },
 
   // Function to execute when the puzzle is successfully solved
+  // Remember to call stopCountdownTimer
   onSuccess: function () {},
 };
 ```

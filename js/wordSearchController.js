@@ -55,7 +55,6 @@ function WordSearchController() {
     //generates the view of the game and sets up mouse events for clicking and dragging
     game = new WordSearchLogic(resultArray.slice());
     game.setUpGame();
-    console.log(getDeviceType());
     view =
       getDeviceType() === "Phone" || getDeviceType() === "Tablet"
         ? new WordSearchMiniView(game.getMatrix(), game.getListOfWords())

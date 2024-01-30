@@ -22,6 +22,7 @@ function WordSearchLogic(list) {
     // if(typeof config.board.initGridStyling === 'function'){
     // config.board.initGridStyling(config.gameContainerId);
     // }
+    countdownTimer(config.timer.duration, config.timer.timerCallback);
     fitWordsIntoMatrix(list, board.matrix);
     fillWithRandomLetters(board.matrix);
   };

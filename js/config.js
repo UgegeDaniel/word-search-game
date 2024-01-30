@@ -19,7 +19,7 @@ const config = {
   },
   board: {
     boardSize: 9,
-    rows: 10,
+    rows: 8,
     columns: 10, //this value has to be greater than or equal to the number of rows
     initGridStyling: function (gridContainerId) {
       const gridContainer = document.querySelector(gridContainerId);
@@ -104,6 +104,7 @@ const config = {
     const newGameButton = document.querySelector("#newGame");
     const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
     const reward = JSON.parse(localStorage.getItem("ws-reward"));
+    stopCountdownTimer();
     if (
       userDetails.attemptsBalance === 0 ||
       userDetails.attemptsBalance - 1 === 0
