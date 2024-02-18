@@ -5,15 +5,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Word Search Game!</title>
-  <!-- <link rel="stylesheet" type="text/css" href="css/wordsearch.css"> -->
   <link rel="stylesheet" type="text/css" href="css/style.css" />
-  <!-- <link rel="stylesheet" type="text/css" href="css/additional-css.css" /> -->
 </head>
 
 <body>
   <div id="overlay">
     <div id="card" class="flex">
-      <!-- <button class="button" onclick="closeModal()" >Go Back To Homepage</button> -->
       <div class="flexCol vertical-centre">
         <button class="button btn-lg" onclick="proceedToPayementGateway()">
           Proceed With Payment
@@ -69,7 +66,9 @@
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="js/firebase.js"></script>
   <script src="js/config.js"></script>
   <script src="js/timer.js"></script>
   <script src="js/wordsToSearch.js"></script>
@@ -90,22 +89,39 @@
     const overlayElement = document.querySelector("#overlay");
     rewardElement.value = `${Number(costPerAttemptElement.value) * 200}`;
 
-    function initializeDemoDetails() {
-      const userDetails = {
-        userId: 1,
-        email: "johnDoe@example.com",
-        userName: "John Doe",
-        walletBalance: 1000,
-        attemptsBalance: 0,
-      };
-      localStorage.setItem("ws-userDetails", JSON.stringify(userDetails));
+    let userDetails;
+
+    // Function to initialize user details
+    async function initializeUserDetails() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const userIdFromParams = urlParams.get("userId");
+      const userIdFromLocalStorage = JSON.parse(
+        localStorage.getItem("ws-userDetails")
+      )?.userId;
+      const userDetailsFromFireBase = userIdFromParams
+        ? await fetchUserData(userIdFromParams)
+        : await fetchUserData(userIdFromLocalStorage);
+      if (userDetailsFromFireBase) {
+        userDetails = userDetailsFromFireBase;
+        localStorage.setItem(
+          "ws-userDetails",
+          JSON.stringify({
+            userId: userIdFromParams || userIdFromLocalStorage,
+            ...userDetails,
+          })
+        );
+      } else {
+        console.log("User not found");
+      }
     }
 
-    initializeDemoDetails();
-
-    const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
-    attemptBalanceElement.value = userDetails.attemptsBalance;
-    walletBalanceElement.value = `₦${userDetails.walletBalance}`;
+    // Call initializeDemoDetails on page load
+    window.addEventListener("DOMContentLoaded", async (event) => {
+      await initializeUserDetails();
+      userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
+      attemptBalanceElement.value = userDetails.attemptsBalance;
+      walletBalanceElement.value = `₦${userDetails.walletBalance}`;
+    });
 
     function calculateRewardAmount() {
       rewardElement.value = `₦${Number(costPerAttemptElement.value) * 200}`;
@@ -129,7 +145,7 @@
       overlayElement.style.display = "none";
     }
 
-    function proceedToPayementGateway() {
+    async function proceedToPayementGateway() {
       const userToPay =
         Number(costPerAttemptElement.value) * Number(attemptsElement.value);
       if (userToPay > userDetails.walletBalance) {
@@ -141,18 +157,14 @@
       const newWalletBalance = userDetails.walletBalance - userToPay;
       const newAttemptsBalance =
         userDetails.attemptsBalance + Number(attemptsElement.value);
-      localStorage.setItem(
-        "ws-userDetails",
-        JSON.stringify({
-          ...userDetails,
-          walletBalance: newWalletBalance,
-          attemptsBalance: newAttemptsBalance,
-        })
-      );
       localStorage.setItem("ws-reward", rewardElement.value);
+      await updateFieldsInFirebase(userDetails.userId, {
+        walletBalance: newWalletBalance,
+        attemptsBalance: newAttemptsBalance,
+      });
       alert(
         `Your new wallet balance is ₦${newWalletBalance}
-           You now have ${newAttemptsBalance} attempts`
+      You now have ${newAttemptsBalance} attempts`
       );
       gotoInstaructionsPage();
     }

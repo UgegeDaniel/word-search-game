@@ -53,7 +53,7 @@ const config = {
   timer: {
     duration: 15,
     containerId: "#timer",
-    timerCallback: function () {
+    timerCallback: async function () {
       const winLose = document.querySelector("#win-lose");
       const overlay = document.querySelector("#overlay");
       const attemptBalanceDisplay = document.querySelector(".attempts-balance");
@@ -80,6 +80,9 @@ const config = {
         newGameButton.style.display = "none";
         return;
       }
+      await updateFieldsInFirebase(userDetails.userId, {
+        attemptsBalance: userDetails.attemptsBalance - 1,
+      });
       localStorage.setItem(
         "ws-userDetails",
         JSON.stringify({
@@ -96,7 +99,7 @@ const config = {
       newGameButton.innerText = "Try Again";
     },
   },
-  onSuccess: function () {
+  onSuccess: async function () {
     const winLose = document.querySelector("#win-lose");
     const overlay = document.querySelector("#overlay");
     const attemptBalanceDisplay = document.querySelector(".attempts-balance");
@@ -132,6 +135,11 @@ const config = {
     } attempts left`;
     walletBalanceDisplay.innerText = `Your wallet balance is ₦${userDetails.walletBalance} + ₦${reward}`;
     newGameButton.innerText = "Keep Playing";
+    //update db
+    await updateFieldsInFirebase(userDetails.userId, {
+      walletBalance: userDetails.walletBalance + reward,
+      attemptsBalance: userDetails.attemptBalance - 1,
+    });
     localStorage.setItem(
       "ws-userDetails",
       JSON.stringify({

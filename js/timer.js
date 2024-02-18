@@ -7,9 +7,9 @@ function countdownTimer(seconds, callback) {
     document.querySelector("#timer").innerText = `0:${currentSeconds}`;
     if (currentSeconds === 0) {
       stopCountdownTimer(); // Stop the timer when it reaches 0
-      if (typeof callback === "function") {
+      // if (typeof callback === "function") {
         callback();
-      }
+      // }
     } else {
       currentSeconds--;
     }

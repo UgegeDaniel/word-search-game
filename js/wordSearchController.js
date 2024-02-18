@@ -44,7 +44,6 @@ function WordSearchController() {
     }
 
     resultArray.push(array1, array2);
-    // console.log({ listOfWords });
     countdownTimer(config.timer.duration, config.timer.timerCallback);
     convertToUpperCase(resultArray);
 
