@@ -51,7 +51,7 @@ const config = {
   instructionsId: "instructions",
   themeId: "#wordTheme",
   timer: {
-    duration: 15,
+    duration: 150,
     containerId: "#timer",
     timerCallback: async function () {
       const winLose = document.querySelector("#win-lose");
@@ -106,7 +106,7 @@ const config = {
     const walletBalanceDisplay = document.querySelector(".wallet-balance");
     const newGameButton = document.querySelector("#newGame");
     const userDetails = JSON.parse(localStorage.getItem("ws-userDetails"));
-    const reward = JSON.parse(localStorage.getItem("ws-reward"));
+    const reward = JSON.parse(localStorage.getItem("ws-reward")) || 1000;
     stopCountdownTimer();
     if (
       userDetails.attemptsBalance === 0 ||
