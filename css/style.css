@@ -40,6 +40,11 @@ h3 {
   font-weight: 900;
 }
 
+a{
+  text-decoration: none;
+  color: white;
+}
+
 /* Containers */
 #game {
   display: flex;
@@ -176,7 +181,9 @@ select::after {
   margin-top: 20px;
 }
 
-
+#fundWalletBtn{
+  /* display: none; */
+}
 /* Frequently used classes */
 .payment-details {
   padding-top: 1rem;
