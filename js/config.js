@@ -51,7 +51,7 @@ const config = {
   instructionsId: "instructions",
   themeId: "#wordTheme",
   timer: {
-    duration: 15,
+    duration: 200,
     containerId: "#timer",
     timerCallback: async function () {
       const winLose = document.querySelector("#win-lose");
